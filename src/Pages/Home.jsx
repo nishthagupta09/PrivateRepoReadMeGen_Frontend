@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API = "http://localhost:8080";
+const API = "https://privatereporeadmegen.onrender.com/";
 
 function Home() {
   const [repos, setRepos] = useState([]);
@@ -15,7 +15,7 @@ function Home() {
   
   const login = () => {
     window.location.href =
-      "http://localhost:8080/oauth2/authorization/github";
+      "https://privatereporeadmegen.onrender.com/oauth2/authorization/github";
   };
 
   useEffect(() => {
