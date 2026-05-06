@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API = "https://privatereporeadmegen.onrender.com/";
+const API = "https://privatereporeadmegen.onrender.com";
 
 function Home() {
   const [repos, setRepos] = useState([]);
