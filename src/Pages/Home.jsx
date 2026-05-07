@@ -28,9 +28,9 @@ function Home() {
         setUser(res.data);
         setIsLoggedIn(true);
       })
-//       .catch(() => {
-//         setIsLoggedIn(false);
-//       });
+      .catch(() => {
+        setIsLoggedIn(false);
+      });
   }
 }, []);
 
