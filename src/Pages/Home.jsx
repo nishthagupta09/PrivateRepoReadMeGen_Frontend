@@ -32,6 +32,7 @@ function Home() {
       setUser(res.data);
       setIsLoggedIn(true);
       console.log(res.data);
+      console.log("LOGIN:", res.data.login);
     })
     .catch((err) => {
       console.log(err);
@@ -45,8 +46,6 @@ function Home() {
 
   useEffect(() => {
     if (!isLoggedIn) return;
-
-    console.log("LOGIN:", user.login);
 
     axios
       .get(`${API}/private-repo`, { withCredentials: true })
