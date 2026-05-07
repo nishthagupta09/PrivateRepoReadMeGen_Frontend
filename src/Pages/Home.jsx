@@ -21,9 +21,13 @@ function Home() {
   useEffect(() => {
   const params = new URLSearchParams(window.location.search);
 
-  if (params.get("login") === "success") {
     axios
-      .get(`${API}/api/user`, { withCredentials: true })
+      .get(`${API}/api/user`, { withCredentials: true ,
+        headers:{
+            "Content-Type":"application/json"
+        }
+       })
+       
       .then((res) => {
         setUser(res.data);
         setIsLoggedIn(true);
@@ -33,7 +37,7 @@ function Home() {
         setIsLoggedIn(false);
         console.log(err);
       });
-  }
+
 }, []);
 
 
