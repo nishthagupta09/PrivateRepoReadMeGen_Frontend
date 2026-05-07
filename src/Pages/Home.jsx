@@ -18,21 +18,21 @@ function Home() {
       "https://privatereporeadmegen.onrender.com/oauth2/authorization/github";
   };
 
-  useEffect(() => {
-  const params = new URLSearchParams(window.location.search);
+//   useEffect(() => {
+//   const params = new URLSearchParams(window.location.search);
 
-  if (params.get("login") === "success") {
-    axios
-      .get(`${API}/api/user`, { withCredentials: true })
-      .then((res) => {
-        setUser(res.data);
-        setIsLoggedIn(true);
-      })
-      .catch(() => {
-        setIsLoggedIn(false);
-      });
-  }
-}, []);
+//   if (params.get("login") === "success") {
+//     axios
+//       .get(`${API}/api/user`, { withCredentials: true })
+//       .then((res) => {
+//         setUser(res.data);
+//         setIsLoggedIn(true);
+//       })
+//       .catch(() => {
+//         setIsLoggedIn(false);
+//       });
+//   }
+// }, []);
 
 
   useEffect(() => {
