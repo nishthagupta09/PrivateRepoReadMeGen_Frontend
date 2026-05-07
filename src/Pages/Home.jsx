@@ -21,22 +21,22 @@ function Home() {
   useEffect(() => {
   const params = new URLSearchParams(window.location.search);
 
-    axios
-      .get(`${API}/api/user`, { withCredentials: true ,
-        headers:{
-            "Content-Type":"application/json"
-        }
-       })
-       
-      .then((res) => {
-        setUser(res.data);
-        setIsLoggedIn(true);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        setIsLoggedIn(false);
-        console.log(err);
-      });
+  if (params.get("login") === "success") {
+
+    axios.get(`${API}/api/user`, {
+      withCredentials: true
+    })
+    .then((res) => {
+      setUser(res.data);
+      setIsLoggedIn(true);
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      setIsLoggedIn(false);
+    });
+
+  }
 
 }, []);
 
