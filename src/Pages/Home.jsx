@@ -21,6 +21,8 @@ function Home() {
   useEffect(() => {
   const params = new URLSearchParams(window.location.search);
 
+  console.log("PARAM:", params.get("login"));
+
   if (params.get("login") === "success") {
 
     axios.get(`${API}/api/user`, {
