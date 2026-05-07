@@ -27,9 +27,11 @@ function Home() {
       .then((res) => {
         setUser(res.data);
         setIsLoggedIn(true);
+        console.log(res.data);
       })
-      .catch(() => {
+      .catch((err) => {
         setIsLoggedIn(false);
+        console.log(err);
       });
   }
 }, []);
