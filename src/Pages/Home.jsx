@@ -29,6 +29,10 @@ function Home() {
 
         localStorage.setItem("token", token);
 
+        const payload = JSON.parse(atob(token.split(".")[1]));
+
+        localStorage.setItem("login", payload.sub);
+
         setIsLoggedIn(true);
     }
 
@@ -83,7 +87,7 @@ function Home() {
 
         const res = await axios.post(
 
-            `${API}/private-repo/${selectedRepo}/generate-readme`,
+            `${API}/private-repo/${localStorage.getItem("login")}/${selectedRepo}/generate-readme`,
 
             {
                 snippet: ""
