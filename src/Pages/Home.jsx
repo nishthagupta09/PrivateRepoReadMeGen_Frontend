@@ -85,6 +85,8 @@ function Home() {
         console.log("TOKEN:", token);
         console.log("REPO:", selectedRepo);
 
+        console.log(`${API}/private-repo/${localStorage.getItem("login")}/${selectedRepo}/generate-readme`);
+
         const res = await axios.post(
 
             `${API}/private-repo/${localStorage.getItem("login")}/${selectedRepo}/generate-readme`,
