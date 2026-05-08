@@ -9,10 +9,8 @@ function Home() {
   const [readme, setReadme] = useState("");
   const [loading, setLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null);
   const [copied, setCopied] = useState(false);
 
-  
   const login = () => {
     window.location.href =
       "https://privatereporeadmegen.onrender.com/oauth2/authorization/github";
@@ -128,7 +126,7 @@ function Home() {
   return (
   <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
     
-    {/* TOP BAR */}
+    
     <div className="flex items-center justify-between px-8 py-4 border-b border-white/10 backdrop-blur-xl bg-white/5">
       <h1 className="text-xl font-semibold tracking-tight">
         AI README
@@ -137,15 +135,15 @@ function Home() {
       {isLoggedIn && (
         <div className="flex items-center gap-3 bg-white/5 px-4 py-2 rounded-xl border border-white/10">
           <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-          <span className="text-sm">{user?.login}</span>
+          <span className="text-sm">{localStorage.getItem("login")}</span>
         </div>
       )}
     </div>
 
-    {/* MAIN GRID */}
+
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 max-w-7xl mx-auto">
       
-      {/* LEFT PANEL */}
+      
       <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl">
         
         <h2 className="text-lg font-medium mb-4">Setup</h2>
@@ -159,7 +157,7 @@ function Home() {
           </button>
         ) : (
           <>
-            {/* REPO SELECT */}
+    
             <label className="text-sm text-slate-400 mb-2 block">
               Repository
             </label>
@@ -176,7 +174,7 @@ function Home() {
               ))}
             </select>
 
-            {/* GENERATE BUTTON */}
+            
             <button
               disabled={!selectedRepo || loading}
               onClick={generate}
@@ -187,7 +185,7 @@ function Home() {
               {loading ? "Generating..." : "Generate README"}
             </button>
 
-            {/* SMALL INFO */}
+        
             <p className="text-xs text-slate-500 mt-4">
               AI-generated README based on your repository content.
             </p>
@@ -195,7 +193,7 @@ function Home() {
         )}
       </div>
 
-      {/* RIGHT PANEL */}
+
       <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl flex flex-col">
         
         <div className="flex items-center justify-between mb-4">
@@ -211,7 +209,7 @@ function Home() {
           )}
         </div>
 
-        {/* OUTPUT BOX */}
+
         <textarea
           value={readme}
           readOnly
