@@ -21,71 +21,95 @@ function Home() {
   useEffect(() => {
   const params = new URLSearchParams(window.location.search);
 
-  console.log("PARAM:", params.get("login"));
+  const token =params.get("token");
 
-  if (params.get("login") === "success") {
+  console.log("TOKEN:", token);
 
-    axios.get(`${API}/api/user`, {
-      withCredentials: true
-    })
-    .then((res) => {
-      setUser(res.data);
-      setIsLoggedIn(true);
-      console.log(res.data);
-      console.log("LOGIN:", res.data.login);
-    })
-    .catch((err) => {
-      console.log(err);
-      setIsLoggedIn(false);
-    });
+    if (token) {
 
-  }
+        localStorage.setItem("token", token);
+
+        setIsLoggedIn(true);
+    }
 
 }, []);
 
 
-  useEffect(() => {
-    if (!isLoggedIn) return;
+  useEffect(()=>{
+
+     if (!isLoggedIn) return;
+
+    const token = localStorage.getItem("token");
 
     axios
-      .get(`${API}/private-repo`, { withCredentials: true })
-      .then((res) => {
-        setRepos(res.data);
-      });
-  }, [isLoggedIn]);
+        .get(`${API}/private-repo`, {
+
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+
+        })
+
+        .then((res) => {
+
+            console.log(res.data);
+
+            setRepos(res.data);
+
+        })
+
+        .catch((err) => {
+
+            console.log(err);
+
+        });
+  },[isLoggedIn])
 
   
   const generate = async () => {
+
     if (!selectedRepo) {
-      alert("Select a repository");
-      return;
+        alert("Select a repository");
+        return;
     }
 
-    console.log(selectedRepo);
-
     try {
-      setLoading(true);
-      console.log(selectedRepo);
+        setLoading(true);
 
-      const res = await axios.post(
+        const token = localStorage.getItem("token");
 
-        `${API}/private-repo/${user.login}/${selectedRepo}/generate-readme`,
+        console.log("TOKEN:", token);
+        console.log("REPO:", selectedRepo);
 
-        { snippet: " " },
+        const res = await axios.post(
 
-        { withCredentials: true }
-      );
+            `${API}/private-repo/${selectedRepo}/generate-readme`,
 
-      setReadme(res.data);
-    } 
+            {
+                snippet: ""
+            },
+
+            {   withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
+        console.log(res.data);
+        setReadme(res.data);
+    }
+
     catch (err) {
         console.error(err);
         alert("Error generating README");
-    } 
+    }
+
     finally {
         setLoading(false);
     }
-  };
+};
 
   const handleCopy = async () => {
   if (!readme) return;
