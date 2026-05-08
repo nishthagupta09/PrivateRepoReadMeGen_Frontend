@@ -44,7 +44,6 @@ function Home() {
     axios
         .get(`${API}/private-repo`, {
 
-            withCredentials: true,
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -90,7 +89,7 @@ function Home() {
                 snippet: ""
             },
 
-            {   withCredentials: true,
+            {   
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
