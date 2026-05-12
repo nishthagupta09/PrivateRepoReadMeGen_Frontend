@@ -189,6 +189,9 @@ function Home() {
             <p className="text-xs text-slate-500 mt-4">
               AI-generated README based on your repository content.
             </p>
+            <p className="text-xs text-slate-500 mt-4">
+              Built By Nishtha Gupta
+            </p>
           </>
         )}
       </div>
