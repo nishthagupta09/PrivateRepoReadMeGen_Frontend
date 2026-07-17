@@ -2,7 +2,8 @@
 
 The React frontend for **AI README**, a tool that connects to a user's GitHub account and generates a `README.md` for any of their repositories (including private ones) using AI.
 
-Live app: `https://repo-read-me-gen.vercel.app`
+Live app: https://repo-read-me-gen.vercel.app
+
 Backend API: [PrivateRepoReadMeGen](https://github.com/nishthagupta09/PrivateRepoReadMeGen) — deployed at `https://privatereporeadmegen.onrender.com`
 
 ## How It Works
